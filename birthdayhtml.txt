@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Nida ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:radial-gradient(circle at top,#ff7eb3,#ff4d6d);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Floating Hearts */
+.heart{
+    position:fixed;
+    width:18px;
+    height:18px;
+    background:red;
+    transform:rotate(45deg);
+    animation:floatUp linear infinite;
+    opacity:.7;
+}
+.heart:before,.heart:after{
+    content:'';
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:red;
+    border-radius:50%;
+}
+.heart:before{top:-9px;left:0;}
+.heart:after{left:-9px;top:0;}
+
+@keyframes floatUp{
+    from{transform:translateY(100vh) rotate(45deg);opacity:1;}
+    to{transform:translateY(-10vh) rotate(45deg);opacity:0;}
+}
+
+.container{
+    padding:30px 15px;
+    position:relative;
+    z-index:2;
+}
+
+h1{
+    font-size:2.7em;
+    text-shadow:0 0 15px rgba(0,0,0,.5);
+}
+
+.subtitle{
+    font-size:1.2em;
+    margin-bottom:15px;
+}
+
+/* Typing Animation */
+#typing{
+    font-size:1.6em;
+    margin:25px 0;
+    height:45px;
+    color:#fff7c2;
+    font-weight:600;
+}
+
+/* Message */
+.message{
+    max-width:780px;
+    margin:auto;
+    font-size:1.1em;
+    line-height:1.8;
+    background:rgba(255,255,255,.15);
+    padding:24px;
+    border-radius:20px;
+}
+
+/* Signature */
+.signature{
+    margin-top:25px;
+    font-size:1.2em;
+    font-weight:600;
+    color:#ffe6ef;
+}
+
+/* Gallery */
+.gallery-title{
+    margin-top:40px;
+    font-size:1.8em;
+}
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+    padding:20px;
+}
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+    transition:.3s;
+}
+.gallery img:hover{transform:scale(1.05);}
+
+/* Button */
+button{
+    margin:25px 0;
+    padding:12px 30px;
+    font-size:16px;
+    border:none;
+    border-radius:30px;
+    background:#ff0033;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.4);
+}
+button:hover{background:#e6002d;}
+
+footer{
+    margin:30px 0;
+    font-size:.9em;
+    opacity:.9;
+}
+
+/* Fireworks */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+    <h1>🎉 Happy Birthday Nida ❤️ 🎂</h1>
+    <div class="subtitle">To the most unmatched woman ever 👑</div>
+
+    <!-- Animated Love Text -->
+    <div id="typing"></div>
+
+    <div class="message">
+        Happy Birthday to my absolute queen, <b>Nida</b> 👑  
+        You are truly unmatched — the best part of my everyday routine and the calm in all my chaos.  
+
+        <br><br>
+        Watching you grow isn’t just beautiful, it’s iconic.  
+        You’re aging like fine wine — getting stronger, wiser, and even more stunning with every year 🍷✨  
+
+        <br><br>
+        You deserve the world and so much more than words can explain.  
+        Today is all about celebrating YOU — the standard, the moment, the main character 💖
+    </div>
+
+    <!-- SIGNATURE ADDED -->
+    <div class="signature">
+        Your Love, Rohul 💕
+    </div>
+
+    <button onclick="playMusic()">▶ Play Birthday Music</button>
+
+    <div class="gallery-title">📸 Our Beautiful Memories</div>
+    <div class="gallery">
+        <img src="photo1.jpg">
+        <img src="photo2.jpg">
+        <img src="photo3.jpg">
+        <img src="photo4.jpg">
+    </div>
+
+    <footer>
+        Made with love ❤️
+    </footer>
+</div>
+
+<script>
+/* Hearts */
+for(let i=0;i<40;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*6)+"s";
+    document.body.appendChild(h);
+}
+
+/* Music */
+function playMusic(){
+    document.getElementById("music").play();
+}
+
+/* Typing Effect */
+const text="I Love You, Love of My Life ❤️";
+let i=0;
+function type(){
+    if(i<text.length){
+        document.getElementById("typing").innerHTML+=text.charAt(i);
+        i++;
+        setTimeout(type,110);
+    }
+}
+type();
+
+/* Fireworks */
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function firework(){
+    const x=Math.random()*canvas.width;
+    const y=Math.random()*canvas.height/2;
+    for(let i=0;i<30;i++){
+        ctx.beginPath();
+        ctx.arc(x,y,2,0,Math.PI*2);
+        ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+        ctx.fill();
+    }
+}
+setInterval(firework,800);
+</script>
+
+</body>
+</html>
